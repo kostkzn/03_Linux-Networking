@@ -199,8 +199,8 @@ The value `0` indicates that we need to uncomment line `net.ipv4.ip_forward=1` i
 
 * ### Checking results of configuration for Client1
 
-  1. Client1 got IP `10.83.5.7` on `enp0s3` and `172.16.5.1` on `enp0s8`
-  2. Client1 is able to ping host and resolve domain names via Server
+1. Client1 got IP `10.83.5.7` on `enp0s3` and `172.16.5.1` on `enp0s8`
+2. Client1 is able to ping host and resolve domain names via Server
 
 ![Client1 results](client1_conf/ip_a.jpg)
 
@@ -261,9 +261,9 @@ The value `0` indicates that we need to add line `net.ipv4.ip_forward=1` in `/et
 
 * ### Checking results of configuration for Client2
 
-  1. Client2 got IP `10.11.83.13` on `enp0s3` and `172.16.5.2` on `enp0s8`
-  2. Client2 is able to ping hosts and resolve domain names via Server
-  3. Client2 is able to ping Client1 via `172.16.5.0/24`
+1. Client2 got IP `10.11.83.13` on `enp0s3` and `172.16.5.2` on `enp0s8`
+2. Client2 is able to ping hosts and resolve domain names via Server
+3. Client2 is able to ping Client1 via `172.16.5.0/24`
 
 ![Client2 results](client2_conf/ip_a.jpg)
 
