@@ -318,7 +318,7 @@ The goal is to calculate the shared summarizing address and mask for addresses `
 |172.17.0.0|**10101100.00010001.000**00000.00000000|
 |255.255.224.0|**11111111.11111111.111**00000.00000000|
 
-So, summarized route will be `172.17.0.0/19` 
+So, summarized route will be `172.17.0.0/19`
 
 * ### Step 2: managing routes on Server
 
@@ -377,7 +377,7 @@ Sometimes SSH service is preinstalled in Linux. So, let's check the SSH connecti
 Following goals for this task are:
 
   1. Allow SSH connection for Client1 and deny for Client_2
-  2. From Client2 ping to `172.17.15.1` could be passed and to `172.17.25.1` is denied 
+  2. From Client2 ping to `172.17.15.1` could be passed and to `172.17.25.1` is denied
 
 Next we use the following commands on Server:
 
@@ -407,7 +407,7 @@ We can see that 7 packets were dropped for Client2/`10.11.83.13` and 1 packet wa
 
 When Client2 were pinging the addresses on `lo` of Client1 via Server, 3 packets were dropped and the other 3 were accepted  
 
-Use `sudo iptables -F` command to flush all added rules in iptables. 
+Use `sudo iptables -F` command to flush all added rules in iptables.
 
 ## NAT configuration on Server
 
