@@ -1,6 +1,6 @@
 # Linux Networking Topic
 
-The aim of workshop is a creation of network using VirtualBox and solving some additional tasks
+The aim of workshop is creation of network using VirtualBox and solving some additional tasks
 
 ## Table of Contents
 
@@ -15,13 +15,11 @@ The aim of workshop is a creation of network using VirtualBox and solving some a
 * [Firewall configuration on Server](#firewall-configuration-on-server)
 * [NAT configuration on Server](#nat-configuration-on-server)
 
-
-
 ## Topology of the configurable network
 
 ![Network scheme](docs/scheme.jpg)
 
-Here `enp0s3`, `enp0s8`, `enp0s9` are virtual Ethernet interface. Name indentificators could vary.
+Here `enp0s3`, `enp0s8` and `enp0s9` are virtual Ethernet interface. Name indentificators could vary.
 
 ## Server configuration (Ubuntu 22.04)
 
@@ -206,16 +204,10 @@ The value `0` indicates that we need to uncomment line `net.ipv4.ip_forward=1` i
 
 ![Client1 results](client1_conf/ip_a.jpg)
 
-<!-- Now we can install `net-tools` package for using `route` command and some other useful tools:
+Now we can install `traceroute` and `net-tools` packages for using `traceroute` and `route` commands:
 
 ```shell
-$ sudo apt-get install net-tools
-``` -->
-
-Now we can install `traceroute` package:
-
-```shell
-$ sudo apt-get install traceroute
+$ sudo apt-get install traceroute net-tools
 ```
 
 ![Client1 route](client1_conf/route.jpg)
@@ -318,7 +310,6 @@ The goal is to configure traffic from Client2 to `172.17.15.1` via Server and fr
 The goal is to calculate the shared summarizing address and mask for addresses `172.17.15.1` and `172.17.25.1` where the prefix should be as long as possible. The established routes created in the previous steps should be deleted. New merged traffic route from Client2 should pass via Server.
 
 * ### Step 1: calculating summarizing address and mask
-* ### Step 1: calculating summarizing address and mask
 
 |addresses|binary|
 |---|---|
@@ -383,12 +374,12 @@ Sometimes SSH service is preinstalled in Linux. So, let's check the SSH connecti
 
 ## Firewall configuration on Server
 
-Following tasks for this task are:
+Following goals for this task are:
 
   1. Allow SSH connection for Client1 and deny for Client_2
   2. From Client2 ping to `172.17.15.1` could be passed and to `172.17.25.1` is denied 
 
-To complete the task we use the following commands on Server:
+Next we use the following commands on Server:
 
 ```shell
 $ sudo iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
@@ -402,7 +393,7 @@ $ sudo iptables -A INPUT -i lo -j ACCEPT
 $ sudo iptables -A INPUT -j DROP
 -->
 
-After that we are going to check accepted rules using client hosts:
+After that we are going to check accepted rules as a client host:
 
 ![SSH from Client1](docs/fw-1.jpg)
 
@@ -414,13 +405,13 @@ Let's see `iptables` on Server:
 
 We can see that 7 packets were dropped for Client2/`10.11.83.13` and 1 packet was accepted for Client1/`10.83.5.7`.
 
-When Client2 were pinging the addresses on `lo` of Client1 via Server, by three packets were dropped and the other three were accepted  
+When Client2 were pinging the addresses on `lo` of Client1 via Server, 3 packets were dropped and the other 3 were accepted  
 
 Use `sudo iptables -F` command to flush all added rules in iptables. 
 
 ## NAT configuration on Server
 
-For this part first we need to remove previous added NAT-settings at TL-WR740N home router.
+For this part first we need to remove previous added NAT settings at TL-WR740N home router.
 
 ![Home routing settings](docs/nat-1.jpg)
 
