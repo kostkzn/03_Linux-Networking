@@ -250,7 +250,7 @@ ping goo.gle
 
 ![Client1 results](client1_conf/ip_a.jpg)
 
-</details><br>
+</details>
   
 Now we can install `traceroute` and `net-tools` packages for using `traceroute` and `route` commands:
 
@@ -292,7 +292,7 @@ Type `ls /sys/class/net` and then `ls /etc/sysconfig/network-scripts/`
 
 ![Client2 interfaces](client2_conf/ifcfg.jpg)
 
-</details><br>
+</details>
 
 Network’s configuration files are placed in `/etc/sysconfig/network-scripts/`.  
 File names have a format like `ifcfg-[network device name]`, e.g. `ifcfg-enp0s3`.  
@@ -308,7 +308,7 @@ sudo nano /etc/sysconfig/network-scripts/ifcfg-enp0s3
 
 ![Client2 ifcfg-enp0s3](client2_conf/enp0s3.jpg)
 
-</details><br>
+</details>
 
 Next, we should create connection for `enp0s3`. There are a few way to do it: use `nmtui` command (text user interface for NetworkManager) or copy `ifcfg-enp0s3` and then modify it or use `nmcli` commands like following:
 
@@ -331,7 +331,7 @@ ls /etc/sysconfig/network-scripts/
 
 ![Client2 ifcfg-enp0s8](client2_conf/enp0s8.jpg)
 
-</details><br>
+</details>
 
 New `ifcfg-enp0s8` file has appeared.
 
@@ -352,7 +352,7 @@ sudo nano /etc/sysctl.conf
 
 ![Client2 ip forwarding](client2_conf/ip_forward.jpg)
 
-</details><br>
+</details>
 
 Or activate forwarding via:
 
@@ -388,7 +388,7 @@ We type `traceroute 10.11.83.13`, `route -n` and `traceroute 172.16.5.2`:
 
 ![Client1 traceroute](docs/traceroute1.jpg)
 
-</details><br>
+</details>
 
 In the routing table of Client1 there is no record about `10.11.83.13` or `10.11.83.0/24`. So `10.11.83.13` has the best match with prefix mask `/0` and uses default gateway `10.83.5.1` on interface `enp0s3` for next hop to the Server.  
 On its turn, the Server has a record `10.11.83.0/24` what directly redirects packets via the Server's interface `enp0s8` connected to `10.11.83.13`.
@@ -403,7 +403,7 @@ route -n
 
 ![Server's route table](docs/traceroute3.jpg)
 
-</details><br>
+</details>
 
 We have a similar case with tracing from Client2 to Client1. The Server has a record `10.11.83.0/24` for `10.83.5.7`.
 
@@ -416,7 +416,7 @@ traceroute 172.16.5.1
 
 ![Client2 traceroute](docs/traceroute2.jpg)
 
-</details><br>
+</details>
 
 When a packet is sent by `traceroute` to a host which can't forward it, that host sends an ICMP "Destination Unreachable" message to the originator, which contains a reason for the non-forwarding. On screenshot we can see it like `!X` that means "communication administratively prohibited" due to restricting access to the route tables.
 
@@ -622,7 +622,7 @@ After that we are going to check accepted rules as a client host:
 
 ![SSH from Client2](docs/fw-2.jpg)
 
-</details><br>
+</details>
 
 Let's see `iptables` on Server:
 
@@ -634,7 +634,7 @@ sudo iptables -L -v
 
 ![IPtables on Server](docs/fw-3.jpg)
 
-</details><br>
+</details>
 
 We can see that 7 packets were dropped for Client2/`10.11.83.13` and 1 packet was accepted for Client1/`10.83.5.7`.
 
@@ -650,7 +650,7 @@ For this part first we need to remove previous added NAT settings at TL-WR740N h
 
 ![Home routing settings](docs/nat-1.jpg)
 
-</details><br>
+</details>
 
 Next, we add the following commands to the Server:
 
