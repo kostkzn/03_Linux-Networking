@@ -85,15 +85,20 @@ $ cat /proc/sys/net/ipv4/ip_forward
 ```
 
 The value `1` indicates that forwarding is turned on. It also indicates that the line `net.ipv4.ip_forward=1` holds uncomment state in `/etc/sysctl.conf` file.
-After editting the `/etc/sysctl.conf` type `sudo sysctl --system` command to reload variables.
+If you need to edit `/etc/sysctl.conf` type `sysctl -p` or `sudo sysctl --system` to reload variables.
 
-If forwarding needs to be enabled:
+<details><summary>Show Output</summary>
 
-```shell
-sudo sysctl -w net.ipv4.ip_forward=1
-```
+![$ grep ip_forward /etc/sysctl.conf](serv_conf/03_forwrd.jpg)
 
-<!-- ![$ grep ip_forward /etc/sysctl.conf](serv_conf/03_forwrd.jpg) -->
+</details>
+
+> ***Note***: The following command enables forwarding, but the setting is not saved after a reboot, in contrast to editing of `/etc/sysctl.conf`:
+>
+> ```shell
+> sudo sysctl -w net.ipv4.ip_forward=1
+> ```
+>
 
 * ### DHCP service
 
@@ -228,13 +233,7 @@ $ sysctl net.ipv4.ip_forward
 net.ipv4.ip_forward = 0
 ```
 
-Activating forwarding:
-
-```shell
-sudo sysctl -w net.ipv4.ip_forward=1
-```
-
-<!-- The value `0` indicates that we need to uncomment line `net.ipv4.ip_forward=1` in `/etc/sysctl.conf` file. After that type `sudo sysctl --system` command. -->
+The value `0` indicates that we need to uncomment line `net.ipv4.ip_forward=1` in `/etc/sysctl.conf` file. After that type `sysctl -p` or `sudo sysctl --system` command.
 
 * ### Checking results of configuration for Client1
 
@@ -342,7 +341,7 @@ $ sysctl net.ipv4.ip_forward
 net.ipv4.ip_forward = 0
 ```
 
-The value `0` indicates that we need to add line `net.ipv4.ip_forward=1` in `/etc/sysctl.conf` file. After that type `sudo sysctl --system` command.
+The value `0` indicates that we need to add line `net.ipv4.ip_forward=1` in `/etc/sysctl.conf` file. After that type `sysctl -p` or `sudo sysctl --system` command.
 
 ```shell
 sudo nano /etc/sysctl.conf
@@ -353,12 +352,6 @@ sudo nano /etc/sysctl.conf
 ![Client2 ip forwarding](client2_conf/ip_forward.jpg)
 
 </details>
-
-Or activate forwarding via:
-
-```shell
-sudo sysctl -w net.ipv4.ip_forward=1
-```
 
 * ### Checking results of configuration for Client2
 
